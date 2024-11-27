@@ -1,0 +1,10 @@
+--frontend
+
+npm create-next-app@latest
+npm i react-icons
+npm install react-hot-toast --legacy-peer-deps
+
+
+--backend
+
+npm i mongoose jsonwebtoken brcyptjs
