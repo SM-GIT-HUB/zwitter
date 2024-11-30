@@ -4,5 +4,5 @@ export default function Home() {
     <div className="font-[family-name:var(--font-geist-sans)]">
       hey
     </div>
-  );
+  )
 }
