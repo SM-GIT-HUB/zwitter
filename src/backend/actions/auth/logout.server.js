@@ -24,3 +24,6 @@ function logout()
         return response;
     }
 }
+
+
+export default logout

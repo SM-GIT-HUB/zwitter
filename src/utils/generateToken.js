@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import { cookies } from "next/headers"
 
-function generateToken(userId)
+async function generateToken(userId)
 {
     const token = jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
@@ -15,7 +15,9 @@ function generateToken(userId)
         path: '/'
     }
 
-    cookies().set(cookie);
+    const cookieSet = await cookies();
+
+    cookieSet.set(cookie);
 }
 
 

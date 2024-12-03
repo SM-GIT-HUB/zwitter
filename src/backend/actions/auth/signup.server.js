@@ -10,7 +10,7 @@ const validUser = Joi.object({
     fullName: Joi.string().required(),
     username: Joi.string().required(),
     email: Joi.string(),
-    password: Joi.required()
+    password: Joi.string().required()
 })
 
 async function signUp(form)
@@ -20,6 +20,8 @@ async function signUp(form)
     let response = {};
 
     try {
+        form.email = form.email? form.email : "abc@gmail.com";
+          
         const { error } = validUser.validate({ ...form });
 
         if (error)
@@ -41,20 +43,15 @@ async function signUp(form)
 
         const newUser = await userModel.create({
             ...form,
-            email: email? email : "abc@gmail.com",
             password: hashedPassword
         })
 
         if (newUser)
         {
-            response = { success: true, user: {
-                _id: newUser._id,
-                email: newUser.email,
-                username: newUser.username,
-                fullName: newUser.fullName
-            } }
-
-            generateToken(newUser._id);
+            newUser.password = undefined;
+            
+            response = { success: true, user: JSON.parse(JSON.stringify(newUser)) };
+            await generateToken(newUser._id);
         }
         else {
             response = { success: false, message: "Couldn't signup" };
