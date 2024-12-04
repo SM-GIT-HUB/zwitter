@@ -79,8 +79,6 @@ function Login() {
             </button>
         </Link>
       </div>
-
-      <Toaster/>
     </div>
   )
 }

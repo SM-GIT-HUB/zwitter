@@ -1,6 +1,7 @@
 'use server'
 
 import dbConnect from "@/backend/db"
+import postModel from "@/backend/db/models/post.model"
 
 async function getAllPosts()
 {

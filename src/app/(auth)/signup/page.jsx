@@ -102,8 +102,6 @@ function Signup() {
             </button>
         </Link>
       </div>
-
-      <Toaster/>
     </div>
   )
 }

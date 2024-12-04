@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import ClientSideUser from "@/components/user";
+import ClientSideUser from "@/components/data";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       >
         <ClientSideUser/>
         {children}
+        <Toaster/>
       </body>
     </html>
   );
