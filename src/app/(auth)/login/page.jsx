@@ -3,7 +3,7 @@
 import { MdPassword } from "react-icons/md"
 import { FaUserAlt } from "react-icons/fa"
 import Link from "next/link"
-import toast, { Toaster } from "react-hot-toast"
+import toast from "react-hot-toast"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import useUser from "@/store/useUser"

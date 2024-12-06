@@ -3,7 +3,7 @@
 import { MdOutlineDriveFileRenameOutline, MdPassword } from "react-icons/md"
 import { FaUserAlt, FaEnvelope, FaBalanceScaleRight } from "react-icons/fa"
 import Link from "next/link"
-import toast, { Toaster } from "react-hot-toast"
+import toast from "react-hot-toast"
 import { useState } from "react"
 import signUp from "@/backend/actions/auth/signup.server"
 import { useRouter } from "next/navigation"
@@ -23,9 +23,7 @@ function Signup() {
   const [confirmPassword, setCP] = useState("");
 
   const [form, setForm] = useState(initialForm);
-  const { user, setUser } = useUser();
-
-  console.log(user);
+  const { setUser } = useUser();
 
   async function handleSubmit(e)
   {

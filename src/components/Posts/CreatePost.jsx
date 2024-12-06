@@ -1,10 +1,14 @@
-'use client'
+// 'use client'
 
 import createPost from "@/backend/actions/post/create-post.server"
 import usePosts from "@/store/usePosts"
+import useUser from "@/store/useUser"
 
-function CreatePost({ userId }) {
+function CreatePost() {
+  const { user } = useUser();
   const { posts, setPosts } = usePosts();
+
+  const userId = user?._id;
 
   async function create()
   {
@@ -19,7 +23,7 @@ function CreatePost({ userId }) {
 
   return (
     <div>
-        <button className="border border-black" onClick={create}>Create post</button>
+      <button className="border border-black" onClick={create}>Create post</button>
     </div>
   )
 }

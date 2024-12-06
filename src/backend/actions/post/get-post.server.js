@@ -2,6 +2,7 @@
 
 import dbConnect from "@/backend/db"
 import postModel from "@/backend/db/models/post.model"
+import commentModel from "@/backend/db/models/comment.model"
 
 async function getPost(postId)
 {
@@ -11,10 +12,9 @@ async function getPost(postId)
 
     try {
         const post = await postModel.findByIdAndUpdate(postId,
-            { $inc: { impression: 1 } },
+            { $inc: { impressions: 1 } },
             { new: true }
         ).populate({ path: "user", select: "username dp" })
-
         
         if (!post)
         {
@@ -29,7 +29,7 @@ async function getPost(postId)
         response = { success: true, post: JSON.parse(JSON.stringify(post)) };
     }
     catch(err) {
-        console.log("error in get-post.server:", err.message);
+        console.log("error in get-post.server:", err);
         response = { success: false, message: "Something went wrong" };
     }
     finally {

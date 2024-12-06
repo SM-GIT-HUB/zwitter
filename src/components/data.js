@@ -15,10 +15,19 @@ function ClientSideUser() {
   
   async function fetchUserData()
   {
-    const res = await getMe();
+    try {
+      const res = await getMe();
 
-    localStorage.setItem("user", JSON.stringify(res.user));
-    await fetchPosts(res.user._id);
+      if (!res.success) {
+        throw new Error();
+      }
+
+      localStorage.setItem("user", JSON.stringify(res?.user));
+      await fetchPosts(res?.user?._id);
+    }
+    catch(err) {
+      console.log("no user");
+    }
   }
 
   async function fetchPosts(id)
@@ -35,11 +44,11 @@ function ClientSideUser() {
   useEffect(() => {
     const storedData = localStorage.getItem("user");
 
-    if (storedData)
+    if (!(storedData == "undefined"))
     {
       const data = JSON.parse(storedData);
       setUser(data);
-      fetchPosts(data._id);
+      fetchPosts(data?._id);
     }
     else {
       fetchUserData();
