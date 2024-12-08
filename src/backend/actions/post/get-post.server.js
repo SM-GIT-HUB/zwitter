@@ -14,16 +14,18 @@ async function getPost(postId)
         const post = await postModel.findByIdAndUpdate(postId,
             { $inc: { impressions: 1 } },
             { new: true }
-        ).populate({ path: "user", select: "username dp" })
+        ).populate({ path: "user", select: "username fullName dp" })
         
         if (!post)
         {
             response = { success: false, message: "Post not found" };
             return;
         }
+
+        post.comments.reverse();
             
         await postModel.populate(post, [
-            { path: "comments", populate: { path: "user", select: "username dp" } }
+            { path: "comments", populate: { path: "user", select: "username dp fullName" } }
         ])
 
         response = { success: true, post: JSON.parse(JSON.stringify(post)) };

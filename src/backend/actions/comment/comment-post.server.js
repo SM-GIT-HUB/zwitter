@@ -30,7 +30,7 @@ async function commentPost(userId, postId, text)
             return;
         }
 
-        const newComment = await commentModel.create({ user: userId, text });
+        const newComment = await commentModel.create({ user: userId, post: postId, text });
         post.comments.push(newComment._id);
 
         if (userId.toString() != post.user.toString())

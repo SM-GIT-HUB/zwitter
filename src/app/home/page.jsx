@@ -1,8 +1,6 @@
-'use client'
-
-import CreatePost from "@/components/Posts/CreatePost"
-import Posts from "@/components/Posts/Posts"
-import SetPosts from "@/components/Posts/SetPosts"
+import CreatePost from "@/components/posts/CreatePost"
+import Posts from "@/components/posts/Posts"
+import SetPosts from "@/components/posts/SetPosts"
 
 function Home() {
   return (

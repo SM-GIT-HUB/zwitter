@@ -2,6 +2,7 @@
 
 import dbConnect from "@/backend/db"
 import commentModel from "@/backend/db/models/comment.model";
+import postModel from "@/backend/db/models/post.model";
 
 async function deleteComment(userId, commentId)
 {
@@ -10,13 +11,20 @@ async function deleteComment(userId, commentId)
     let response = {};
 
     try {
-        const comment = await commentModel.findByIdAndDelete(commentId);
+        const comment = await commentModel.findById(commentId);
 
         if (!comment || comment.user.toString() != userId)
         {
             response = { success: false, message: "Invalid request" };
             return;
         }
+
+        const [c, p] = await Promise.all([
+            commentModel.findByIdAndDelete(commentId),
+            postModel.findByIdAndUpdate(comment.post, {
+                $pull: { comments: commentId }
+            })
+        ])
 
         response = { success: true, message: "Comment deleted" };
     }
