@@ -13,11 +13,8 @@ async function PostPage({ params }) {
     return <></>;
   }
 
-  
   const post = res.post;
   
-  console.log(post.comments, "line 19");
-
   return (
     <>
       <Post post={post} navigateTo={'javascript:void(0)'} />

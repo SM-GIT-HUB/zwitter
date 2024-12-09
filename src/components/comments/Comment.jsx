@@ -48,7 +48,7 @@ function Comment({ comment, comments, setComments }) {
 
 			<div className='flex flex-col flex-1'>
 				<div className='flex gap-2 items-center justify-between'>
-					<div className="flex gap-2">
+					<div className="flex gap-2 items-center">
                         <Link href={`/profile/${commentOwner?.username}`} className='font-bold'>
                             {commentOwner.fullName}
                         </Link>
