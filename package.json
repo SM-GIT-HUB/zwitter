@@ -1,5 +1,5 @@
 {
-  "name": "zwitternext",
+  "name": "zwitter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.9.6",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.5.1",
     "joi": "^17.13.3",

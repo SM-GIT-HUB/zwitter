@@ -13,46 +13,10 @@ function ClientSideUser() {
   const { setPosts } = usePosts();
   const { setFollowPosts } = useFollowPosts();
   
-  async function fetchUserData()
-  {
-    try {
-      const res = await getMe();
-
-      if (!res.success) {
-        throw new Error();
-      }
-
-      localStorage.setItem("user", JSON.stringify(res?.user));
-      await fetchPosts(res?.user?._id);
-    }
-    catch(err) {
-      console.log("no user");
-    }
-  }
-
-  async function fetchPosts(id)
-  {
-    const [resP, resFp] = await Promise.all([
-      getAllPosts(),
-      getFollowingPosts(id)
-    ])
-
-    setPosts(resP?.posts);
-    setFollowPosts(resFp?.posts);
-  }
+  
 
   useEffect(() => {
-    const storedData = localStorage.getItem("user");
-
-    if (!(storedData == "undefined"))
-    {
-      const data = JSON.parse(storedData);
-      setUser(data);
-      fetchPosts(data?._id);
-    }
-    else {
-      fetchUserData();
-    }
+    
   }, [setUser]);
 
   return null;
